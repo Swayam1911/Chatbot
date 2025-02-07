@@ -1,0 +1,52 @@
+1. Extracting Data from the Website
+First, the script starts by loading data from a website (`https://brainlox.com/courses/category/technical`) using a tool called `WebBaseLoader`. This is essentially a scraper that grabs the text from the webpage.
+
+After loading the webpage content, the code combines all the text into a single string. Then, it uses a pattern-matching technique called regular expressions (regex) to extract course details like the price of the course, the name of the course, and the number of lessons. These details are formatted into a readable structure and printed out.
+
+Example of What Happens Here:
+If the webpage lists something like:
+```
+$25 per session LEARN Python Programming 10 Lessons View Details
+```
+The code extracts:
+- Price: `$25`
+- Name: `Python Programming`
+- Lessons: `10`
+
+It then organizes this information neatly.
+
+2. Creating and Storing Embeddings
+Once the course information is extracted, the code uses a tool called `SentenceTransformer` to generate something called "embeddings." Embeddings are like mathematical fingerprints of the text—each course is converted into a numerical format that a computer can understand.
+
+These embeddings are then stored in a database called `ChromaDB`. This database is designed specifically for storing and searching through these mathematical representations of text. Once stored, the embeddings are saved to a folder on your computer for future use.
+
+Purpose of This Step:
+Storing embeddings allows the chatbot to later "compare" a user’s query to these embeddings and find the most relevant course.
+
+
+3. Querying the Data
+After storing the course embeddings, the script creates a function to search through the stored data. When a user types something like "Python programming basics," the code calculates which stored embeddings are the closest match to the query. 
+
+It then retrieves the most relevant courses and displays them.
+
+
+4. Building the API
+The next part of the script uses a tool called Flask, which helps in building a simple web server. This server listens for requests from users, processes their queries, and returns results.
+
+A new route is created (`/search`), where users can send a query (e.g., "Python basics") as part of the URL. The server takes this query, searches the stored database (using the embeddings created earlier), and sends back the top 3 most relevant courses as a response.
+
+This API makes the chatbot accessible over the web so anyone can query it.
+
+
+5. Testing the API
+Finally, the API is tested by sending a request to it using a simple program that asks for courses based on a query like "Python programming." The response contains the details of the top courses that match the query.
+
+How It All Works Together
+1. The website is scraped to get course details.
+2. These details are processed into embeddings (numerical representations).
+3. The embeddings are stored in a database for fast searching.
+4. A Flask API is built to let users send their queries to the system.
+5. When a user queries the system, it finds and returns the most relevant courses.
+
+
+In simpler terms, this is a chatbot that understands course information from a website and helps users find relevant courses based on what they’re looking for. The entire process—from scraping the data to responding to user queries—is automated and can be accessed over the web.
