@@ -1,4 +1,11 @@
-Custom Chatbot using LangChain
+TASK:  
+Create a custom chatbot using Langchain: 
+1. Extract data from https://brainlox.com/courses/category/technical 
+using URL loaders from Langchain.
+2. Cerate embeddings and store it in a vector-store.
+3. Create a FLASK RESTFUL API to handle the conversation.
+
+Custom Chatbot using LangChain :
 
 This project involves creating a custom chatbot powered by LangChain, capable of extracting data from a specified website, storing embeddings in a vector store, and serving the chatbot's functionality through a Flask RESTful API. The chatbot leverages the LangChain library for data extraction and OpenAI embeddings for efficient similarity search.
 Features
